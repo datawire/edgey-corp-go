@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>EdgyCorp: Merchandise Search</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: Sans-Serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>EdgyCorp: Merchandise Search</h1>
+<form action="#" th:action="@{./findMerch}" th:object="${merchSearch}" method="post" align="center">
+
+    <p> Choose country:
+        <input type="radio" id="USA" name="country" value="USA" th:field="*{country}">
+        <label for="GB">USA</label>
+        <input type="radio" id="GB" name="country" value="GB" th:field="*{country}">
+        <label for="GB">GB</label>
+    </p>
+
+    <p> Choose season:
+        <input type="radio" id="Summer" name="season" value="Summer" th:field="*{season}">
+        <label for="Summer">Summer</label>
+        <input type="radio" id="Fall" name="season" value="Fall" th:field="*{season}">
+        <label for="Fall">Fall</label>
+    </p>
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+<table width="60%" align="center" border="1">
+    <thead>
+    <tr>
+        <th> SKU </th>
+        <th> Description </th>
+        <th> Country </th>
+        <th> Season </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="edgyMerch : ${edgyMerchs}">
+        <td><span th:text="${edgyMerch.sku}">  </span></td>
+        <td><span th:text="${edgyMerch.descript}">  </span></td>
+        <td><span th:text="${edgyMerch.country}">  </span></td>
+        <td><span th:text="${edgyMerch.season}">  </span></td>
+    </tr>
+    </tbody>
+</table>
+<p><a href="/verylargejavaservice/">Back to homepage</a></p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to the EdgyCorp WebApp</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            font-family: Sans-Serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1 th:style="'color:' + ${color}">Welcome to the EdgyCorp WebApp</h1>
+
+<p th:text="'There are ' + ${#strings.substring(recordCount,0,3)} + ' billion database records available to search!'" />
+
+<p th:text="'The contents of this page were generated from the \'' + ${environment} + '\' environment!'" />
+
+<p>The architecture that powers this page is shown below: </p>
+
+<img th:src="'architecture-' + ${color != null ? color : 'default'} + '.jpg'"/>
+
+<p>Join a friend for some <a href="findMerch">collaborative bug hunting!</a></p>
+</body>
+</html>
