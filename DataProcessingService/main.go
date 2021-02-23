@@ -5,12 +5,11 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 )
 
-var color string = "green"
-var env string = "local"
+var color string = "blue"
+var env string = "development"
 var datastoreURL string = "http://verylargedatastore:8080"
 var port string = "3000"
 
@@ -18,7 +17,7 @@ func index(w http.ResponseWriter, _ *http.Request) {
 	fmt.Println("root endpoint entry for DataProcessingService in Go")
 	b, err := json.Marshal("root endpoint entry for DataProcessingService in Go")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	w.Write(b)
@@ -28,7 +27,7 @@ func getColor(w http.ResponseWriter, _ *http.Request) {
 	fmt.Println("color endpoint entry: " + color)
 	b, err := json.Marshal(color)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	w.Write(b)
@@ -38,7 +37,7 @@ func getEnvironment(w http.ResponseWriter, _ *http.Request) {
 	fmt.Println("environment endpoint entry: ", env)
 	b, err := json.Marshal(env)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	w.Write(b)
@@ -48,12 +47,12 @@ func getEnvironment(w http.ResponseWriter, _ *http.Request) {
 func getRecordCount(w http.ResponseWriter, _ *http.Request) {
 	resp, err := http.Get(datastoreURL + "/recordCount")
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	fmt.Println("recordCount endpoint entry: ", string(body))
@@ -76,12 +75,12 @@ func getMerch(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := http.Get(searchString)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println(err)
 		return
 	}
 	fmt.Println(string(body))
@@ -93,24 +92,29 @@ func main() {
 	fmt.Println("Welcome to the DataProcessingGoService!")
 
 	// Configure app via command line params
-	newColor := flag.String("c", color, "a string")
-	if *newColor != color {
-		color = *newColor
-	}
-	newEnv := flag.String("env", env, "a string")
-	if *newEnv != env {
-		env = *newEnv
-	}
-	newDatastoreURL := flag.String("d", datastoreURL, "a string")
-	if *newDatastoreURL != datastoreURL {
-		datastoreURL = *newDatastoreURL
-	}
-	newPort := flag.String("p", port, "an int")
-	if *newPort != port {
-		port = *newPort
-	}
-
+	colorPtr := flag.String("c", color, "a string")
+	envPtr := flag.String("env", env, "a string")
+	datastorePtr := flag.String("d", datastoreURL, "a string")
+	portPtr := flag.String("p", port, "an int")
 	flag.Parse()
+
+	// Detects if a command-line flag has been set and updates the variable.
+	if *colorPtr != color {
+		color = *colorPtr
+		fmt.Println("Color set to: ", *colorPtr)
+	}
+	if *envPtr != env {
+		env = *envPtr
+		fmt.Println("Environment set to: ", *envPtr)
+	}
+	if *datastorePtr != datastoreURL {
+		datastoreURL = *datastorePtr
+		fmt.Println("Datastore URL set to: ", *datastorePtr)
+	}
+	if *portPtr != port {
+		port = *portPtr
+		fmt.Println("Port set to: ", *portPtr)
+	}
 
 	http.HandleFunc("/", index)
 	http.HandleFunc("/color", getColor)
@@ -120,7 +124,7 @@ func main() {
 
 	err := http.ListenAndServe(":"+port, nil)
 	if err != nil {
-		log.Fatal("Error Starting the HTTP Server : ", err)
+		fmt.Println("Error Starting the HTTP Server : ", err)
 		return
 	}
 
