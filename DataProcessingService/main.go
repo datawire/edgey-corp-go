@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-var color string = "blue"
+var color string = "green"
 var env string = "local"
 var datastoreURL string = "http://verylargedatastore:8080"
 var port string = "3000"
