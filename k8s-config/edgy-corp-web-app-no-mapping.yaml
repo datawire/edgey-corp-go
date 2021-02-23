@@ -71,16 +71,6 @@ spec:
     run: verylargejavaservice
 
 ---
-apiVersion: getambassador.io/v2
-kind:  Mapping
-metadata:
-  name:  verylargejavaservice
-spec:
-  prefix: /
-  rewrite: /
-  service: verylargejavaservice:8080
-  timeout_ms: 60000
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
