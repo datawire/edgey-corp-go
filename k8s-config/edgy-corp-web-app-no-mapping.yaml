@@ -1,0 +1,106 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dataprocessingservice
+spec:
+  selector:
+    matchLabels:
+      run: dataprocessingservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: dataprocessingservice
+    spec:
+      containers:
+      - name: dataprocessingservice
+        image: docker.io/datawire/dataprocessingservice:golang
+        ports:
+        - containerPort: 3000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataprocessingservice
+  labels:
+    run: dataprocessingservice
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+  selector:
+    run: dataprocessingservice
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verylargejavaservice
+spec:
+  selector:
+    matchLabels:
+      run: verylargejavaservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: verylargejavaservice
+    spec:
+      containers:
+      - name: verylargejavaservice
+        image: docker.io/datawire/verylargejavaservice
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: verylargejavaservice
+  labels:
+    run: verylargejavaservice
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    run: verylargejavaservice
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verylargedatastore
+spec:
+  selector:
+    matchLabels:
+      run: verylargedatastore
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: verylargedatastore
+    spec:
+      containers:
+      - name: verylargejavaservice
+        image: docker.io/datawire/verylargedatastore
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: verylargedatastore
+  labels:
+    run: verylargedatastore
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    run: verylargedatastore
