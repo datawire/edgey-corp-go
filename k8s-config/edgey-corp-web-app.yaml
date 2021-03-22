@@ -16,6 +16,7 @@ spec:
       containers:
       - name: dataprocessingservice
         image: docker.io/datawire/dataprocessingservice:golang
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000
 
@@ -75,6 +76,7 @@ apiVersion: getambassador.io/v2
 kind:  Mapping
 metadata:
   name:  verylargejavaservice
+  namespace: default
 spec:
   prefix: /
   rewrite: /
