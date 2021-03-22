@@ -8,4 +8,3 @@ deploy:
   kubectl:
     manifests:
       - k8s-config/dataprocessingservice.yaml
-  kubeContext: docker-desktop
