@@ -24,8 +24,9 @@ func index(w http.ResponseWriter, _ *http.Request) {
 }
 
 func getColor(w http.ResponseWriter, _ *http.Request) {
-	fmt.Println("color endpoint entry: " + color)
-	b, err := json.Marshal(color)
+	c := color
+	fmt.Println("color endpoint entry: " + c)
+	b, err := json.Marshal(c)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -34,8 +35,9 @@ func getColor(w http.ResponseWriter, _ *http.Request) {
 }
 
 func getEnvironment(w http.ResponseWriter, _ *http.Request) {
-	fmt.Println("environment endpoint entry: ", env)
-	b, err := json.Marshal(env)
+	e := env
+	fmt.Println("environment endpoint entry: ", e)
+	b, err := json.Marshal(e)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -45,7 +47,8 @@ func getEnvironment(w http.ResponseWriter, _ *http.Request) {
 
 // recordCount (get the number of records via a call to the datastore service)
 func getRecordCount(w http.ResponseWriter, _ *http.Request) {
-	resp, err := http.Get(datastoreURL + "/recordCount")
+	d := datastoreURL
+	resp, err := http.Get(d + "/recordCount")
 	if err != nil {
 		fmt.Println(err)
 		return
