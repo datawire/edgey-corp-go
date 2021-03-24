@@ -26,6 +26,18 @@ metadata:
   name: dataprocessingservice
   labels:
     run: dataprocessingservice
+  annotations:
+    a8r.io/description: "Data processing adapter"
+    a8r.io/owner: "@peteroneilljr"
+    a8r.io/chat: "#ambassador"
+    a8r.io/bugs: "https://github.com/datawire/edgey-corp-go/issues"
+    a8r.io/documentation: "https://github.com/datawire/edgey-corp-go/blob/master/README.md"
+    a8r.io/repository: "https://github.com/datawire/edgey-corp-go"
+    a8r.io/support: "http://d6e.co/slack"
+    a8r.io/runbook: "https://github.com/datawire/edgey-corp-go/blob/master/README.md"
+    a8r.io/incidents: "https://github.com/datawire/edgey-corp-go/issues"
+    a8r.io/dependencies: "verylargedatastore.default"
+    a8r.io/uptime: "https://github.com/datawire/edgey-corp-go/issues"
 spec:
   ports:
   - port: 3000
@@ -63,6 +75,17 @@ metadata:
   name: verylargejavaservice
   labels:
     run: verylargejavaservice
+  annotations:
+    a8r.io/description: "Web content-generating frontend app"
+    a8r.io/owner: "@danielbryantuk"
+    a8r.io/chat: "#ambassador"
+    a8r.io/bugs: "https://github.com/datawire/edgey-corp-go/issues"
+    a8r.io/documentation: "https://github.com/datawire/edgey-corp-go/blob/master/README.md"
+    a8r.io/repository: "https://github.com/datawire/edgey-corp-go"
+    a8r.io/support: "http://d6e.co/slack"
+    a8r.io/runbook: "https://github.com/datawire/edgey-corp-go/blob/master/README.md"
+    a8r.io/incidents: "https://github.com/datawire/edgey-corp-go/issues"
+    a8r.io/dependencies: "dataprocessingservice.default"
 spec:
   ports:
   - port: 8080
@@ -108,6 +131,17 @@ metadata:
   name: verylargedatastore
   labels:
     run: verylargedatastore
+  annotations:
+    a8r.io/description: "System of record for all Edgey Corp data"
+    a8r.io/owner: "@danielbryantuk"
+    a8r.io/chat: "#ambassador"
+    a8r.io/bugs: "https://github.com/datawire/edgey-corp-go/issues"
+    a8r.io/documentation: "https://github.com/datawire/edgey-corp-go/blob/master/README.md"
+    a8r.io/repository: "https://github.com/datawire/edgey-corp-go"
+    a8r.io/support: "http://d6e.co/slack"
+    a8r.io/runbook: "https://github.com/datawire/edgey-corp-go/blob/master/README.md"
+    a8r.io/incidents: "https://github.com/datawire/edgey-corp-go/issues"
+    a8r.io/dependencies: ""
 spec:
   ports:
   - port: 8080
