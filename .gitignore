@@ -40,3 +40,5 @@ build/
 ### OS ###
 .DS_Store
 DataProcessingGoService/tmp/runner-build
+DataProcessingService/main
+DataProcessingService/__debug_bin
