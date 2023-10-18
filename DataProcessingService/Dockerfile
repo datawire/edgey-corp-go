@@ -7,4 +7,4 @@ COPY main.go .
 RUN go build main.go
 EXPOSE 3000
 
-ENTRYPOINT ./main
+ENTRYPOINT [ "./main" ]
